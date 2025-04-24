@@ -2,65 +2,6 @@
 
 namespace ContaCorrente
 {
-    
-
-    public class ContaCorrente
-    {
-        public int id;
-        public double saldoDisponivel;
-        public double limiteDebito;
-        public Movimentacao[] movimentacoes;
-
-        public double Sacar(int valor)
-        {
-            double resultado = saldoDisponivel -= valor;
-            return resultado;
-        }
-        public double Depositar(int valor)
-        {
-            double resultado = saldoDisponivel += valor;
-            return resultado;
-        }
-        public void Consultar()
-        {
-            Console.WriteLine($"O saldo atual da sua conta é de : {saldoDisponivel}");
-        }
-        public void TransferirPara(ContaCorrente conta, int valor)
-        {
-            saldoDisponivel -= valor;
-            conta.saldoDisponivel += valor;
-        }
-
-       /* public void Movimentacao1()
-        {
-            movimentacoes = new Movimentacao[10];
-
-            for(int i =0; i < contadorMov; i++)
-            { 
-                    Console.WriteLine($"{i+1} movimentação é {movimentacoes[i]}");  
-            }
-        }*/
-
-        public void Extrato()
-        {
-            for (int i = 0; i < movimentacoes.Length; i++)
-            {
-                Console.WriteLine($"{i + 1} movimentação é {movimentacoes[i]}");
-            }
-        }
-        
-    }
-
-    public class Movimentacao
-    {
-        public double credito;
-        public double debito;
-
-        public string Credito()
-        {
-            return "tste";
-        }
-    }
     internal class Program
     {
         static void Main(string[] args)
@@ -88,14 +29,14 @@ namespace ContaCorrente
             conta2.saldoDisponivel = 1000;
             conta2.id = 13;
             conta2.limiteDebito = 0;
+            conta2.movimentacoes = new Movimentacao[10];
 
             conta1.TransferirPara(conta2, 300);
 
-            Console.WriteLine("Teste de transferencia");
-            conta1.Consultar();
-            conta2.Consultar();
+            conta1.ExibirExtrato();
 
-            conta1.Extrato();
+            Console.WriteLine("");
+            conta2.ExibirExtrato();
             Console.ReadLine();
         }
     }
